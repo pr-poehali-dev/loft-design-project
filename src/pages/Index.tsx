@@ -15,22 +15,22 @@ const Index = () => {
   const technologies = [
     {
       icon: "Layers",
-      title: "FDM печать",
+      title: "FDM ПЕЧАТЬ",
       description: "Высокоточная печать пластиковыми материалами для прототипирования и малых серий"
     },
     {
       icon: "Factory",
-      title: "SLS технология",
+      title: "SLS ТЕХНОЛОГИЯ",
       description: "Селективное лазерное спекание для производства прочных функциональных деталей"
     },
     {
       icon: "Cpu",
-      title: "SLA печать",
+      title: "SLA ПЕЧАТЬ",
       description: "Стереолитография для создания моделей с высокой детализацией"
     },
     {
       icon: "Cog",
-      title: "Металл печать",
+      title: "МЕТАЛЛ ПЕЧАТЬ",
       description: "Прямая печать металлом для промышленного применения"
     }
   ];
@@ -38,74 +38,99 @@ const Index = () => {
   const services = [
     {
       icon: "Pencil",
-      title: "Прототипирование",
+      title: "ПРОТОТИПИРОВАНИЕ",
       description: "Быстрое создание прототипов для тестирования концепций"
     },
     {
       icon: "Package",
-      title: "Серийное производство",
+      title: "СЕРИЙНОЕ ПРОИЗВОДСТВО",
       description: "Производство малых и средних серий изделий"
     },
     {
       icon: "Wrench",
-      title: "Инжиниринг",
+      title: "ИНЖИНИРИНГ",
       description: "Разработка и оптимизация изделий под 3D печать"
     },
     {
       icon: "Globe",
-      title: "Консалтинг",
+      title: "КОНСАЛТИНГ",
       description: "Консультации по внедрению аддитивных технологий"
     }
   ];
 
   const projects = [
     {
-      title: "Aerospace",
-      category: "Авиакосмическая отрасль",
+      title: "AEROSPACE",
+      category: "АВИАКОСМИЧЕСКАЯ ОТРАСЛЬ",
       description: "Лёгкие конструкционные элементы для космических аппаратов"
     },
     {
-      title: "Automotive",
-      category: "Автомобилестроение",
+      title: "AUTOMOTIVE",
+      category: "АВТОМОБИЛЕСТРОЕНИЕ",
       description: "Функциональные прототипы деталей двигателя"
     },
     {
-      title: "Medical",
-      category: "Медицина",
+      title: "MEDICAL",
+      category: "МЕДИЦИНА",
       description: "Индивидуальные медицинские имплантаты"
     },
     {
-      title: "Industrial",
-      category: "Промышленность",
+      title: "INDUSTRIAL",
+      category: "ПРОМЫШЛЕННОСТЬ",
       description: "Производственная оснастка и инструменты"
     }
   ];
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
-        <div className="container mx-auto px-6 py-4">
+      <div className="fixed inset-0 opacity-5 pointer-events-none z-0"
+        style={{
+          backgroundImage: `repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(250, 250, 250, 0.03) 2px,
+            rgba(250, 250, 250, 0.03) 4px
+          )`
+        }}
+      ></div>
+
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b-2 border-primary/40">
+        <div className="container mx-auto px-6 py-5">
           <div className="flex items-center justify-between">
-            <div className="text-2xl font-bold tracking-wider text-primary">
-              ADDITIVE TECH
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 bg-primary flex items-center justify-center">
+                <Icon name="Box" className="text-background" size={28} />
+              </div>
+              <div>
+                <div className="text-2xl font-black tracking-tight text-foreground leading-none">
+                  ADDITIVE TECH
+                </div>
+                <div className="text-xs text-primary font-semibold tracking-widest">
+                  INDUSTRIAL 3D PRINTING
+                </div>
+              </div>
             </div>
             <div className="hidden md:flex gap-8">
               {[
-                { id: "home", label: "Главная" },
-                { id: "technologies", label: "Технологии" },
-                { id: "services", label: "Услуги" },
-                { id: "projects", label: "Проекты" },
-                { id: "about", label: "О компании" },
-                { id: "contacts", label: "Контакты" }
+                { id: "home", label: "ГЛАВНАЯ" },
+                { id: "technologies", label: "ТЕХНОЛОГИИ" },
+                { id: "services", label: "УСЛУГИ" },
+                { id: "projects", label: "ПРОЕКТЫ" },
+                { id: "about", label: "О НАС" },
+                { id: "contacts", label: "КОНТАКТЫ" }
               ].map((item) => (
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`text-sm font-medium transition-colors hover:text-primary ${
-                    activeSection === item.id ? "text-primary border-b-2 border-primary" : "text-muted-foreground"
+                  className={`text-sm font-bold transition-colors hover:text-primary relative ${
+                    activeSection === item.id ? "text-primary" : "text-muted-foreground"
                   }`}
                 >
                   {item.label}
+                  {activeSection === item.id && (
+                    <div className="absolute -bottom-5 left-0 right-0 h-0.5 bg-primary"></div>
+                  )}
                 </button>
               ))}
             </div>
@@ -113,63 +138,74 @@ const Index = () => {
         </div>
       </nav>
 
-      <section id="home" className="pt-32 pb-20 px-6">
-        <div className="container mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <div className="inline-block px-4 py-2 bg-primary/10 border border-primary text-primary text-sm font-medium">
-                ИНДУСТРИЯ 4.0
+      <section id="home" className="pt-40 pb-24 px-6 relative">
+        <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-primary/5 to-transparent pointer-events-none"></div>
+        <div className="container mx-auto relative z-10">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="space-y-8">
+              <div className="inline-flex items-center gap-3 px-4 py-2 bg-card border-l-4 border-primary">
+                <div className="w-2 h-2 bg-primary animate-pulse"></div>
+                <span className="text-primary text-sm font-bold tracking-wider">
+                  ИНДУСТРИЯ 4.0 • АДДИТИВНОЕ ПРОИЗВОДСТВО
+                </span>
               </div>
-              <h1 className="text-6xl lg:text-8xl font-bold leading-tight">
-                АДДИТИВНЫЕ
+              <h1 className="text-7xl lg:text-8xl font-black leading-[0.9] tracking-tight">
+                <span className="text-foreground">СОЗДАЁМ</span>
                 <br />
-                <span className="text-primary">ТЕХНОЛОГИИ</span>
+                <span className="text-primary">БУДУЩЕЕ</span>
+                <br />
+                <span className="text-foreground">СЕГОДНЯ</span>
               </h1>
-              <p className="text-xl text-muted-foreground max-w-lg">
+              <div className="h-1 w-32 bg-primary"></div>
+              <p className="text-lg text-muted-foreground max-w-lg leading-relaxed">
                 Профессиональная 3D-печать и прототипирование для промышленности. 
-                Превращаем цифровые модели в реальные изделия.
+                Превращаем цифровые модели в реальные изделия с точностью до микрона.
               </p>
               <div className="flex gap-4 pt-4">
                 <Button 
                   size="lg" 
-                  className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium"
+                  className="bg-primary hover:bg-primary/90 text-background font-bold tracking-wide px-8 h-14 text-base"
                   onClick={() => scrollToSection("contacts")}
                 >
-                  Получить консультацию
+                  ПОЛУЧИТЬ КОНСУЛЬТАЦИЮ
                 </Button>
                 <Button 
                   size="lg" 
                   variant="outline"
-                  className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                  className="border-2 border-primary text-primary hover:bg-primary hover:text-background font-bold tracking-wide px-8 h-14 text-base"
                   onClick={() => scrollToSection("projects")}
                 >
-                  Наши проекты
+                  НАШИ ПРОЕКТЫ
                 </Button>
               </div>
             </div>
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 blur-3xl"></div>
-              <div className="relative bg-card border border-border p-8 backdrop-blur-sm">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-accent/10 blur-3xl"></div>
+              <div className="relative bg-card border-2 border-border p-8">
                 <div className="grid grid-cols-2 gap-6">
-                  <div className="text-center p-6 bg-background/50 border border-border">
-                    <Icon name="Layers" className="mx-auto mb-3 text-primary" size={32} />
-                    <div className="text-3xl font-bold">250+</div>
-                    <div className="text-sm text-muted-foreground">Проектов</div>
+                  <div className="bg-background border-l-4 border-primary p-6 relative overflow-hidden group hover:border-accent transition-colors">
+                    <div className="absolute top-0 right-0 w-20 h-20 bg-primary/10 transform rotate-45 translate-x-10 -translate-y-10 group-hover:bg-accent/10 transition-colors"></div>
+                    <Icon name="Layers" className="mb-4 text-primary group-hover:text-accent transition-colors" size={36} />
+                    <div className="text-4xl font-black text-foreground">250+</div>
+                    <div className="text-xs text-muted-foreground font-semibold tracking-wider">ПРОЕКТОВ</div>
                   </div>
-                  <div className="text-center p-6 bg-background/50 border border-border">
-                    <Icon name="Factory" className="mx-auto mb-3 text-accent" size={32} />
-                    <div className="text-3xl font-bold">15</div>
-                    <div className="text-sm text-muted-foreground">Технологий</div>
+                  <div className="bg-background border-l-4 border-accent p-6 relative overflow-hidden group hover:border-primary transition-colors">
+                    <div className="absolute top-0 right-0 w-20 h-20 bg-accent/10 transform rotate-45 translate-x-10 -translate-y-10 group-hover:bg-primary/10 transition-colors"></div>
+                    <Icon name="Factory" className="mb-4 text-accent group-hover:text-primary transition-colors" size={36} />
+                    <div className="text-4xl font-black text-foreground">15</div>
+                    <div className="text-xs text-muted-foreground font-semibold tracking-wider">ТЕХНОЛОГИЙ</div>
                   </div>
-                  <div className="text-center p-6 bg-background/50 border border-border">
-                    <Icon name="Users" className="mx-auto mb-3 text-primary" size={32} />
-                    <div className="text-3xl font-bold">100+</div>
-                    <div className="text-sm text-muted-foreground">Клиентов</div>
+                  <div className="bg-background border-l-4 border-accent p-6 relative overflow-hidden group hover:border-primary transition-colors">
+                    <div className="absolute top-0 right-0 w-20 h-20 bg-accent/10 transform rotate-45 translate-x-10 -translate-y-10 group-hover:bg-primary/10 transition-colors"></div>
+                    <Icon name="Users" className="mb-4 text-accent group-hover:text-primary transition-colors" size={36} />
+                    <div className="text-4xl font-black text-foreground">100+</div>
+                    <div className="text-xs text-muted-foreground font-semibold tracking-wider">КЛИЕНТОВ</div>
                   </div>
-                  <div className="text-center p-6 bg-background/50 border border-border">
-                    <Icon name="Award" className="mx-auto mb-3 text-accent" size={32} />
-                    <div className="text-3xl font-bold">8</div>
-                    <div className="text-sm text-muted-foreground">Лет опыта</div>
+                  <div className="bg-background border-l-4 border-primary p-6 relative overflow-hidden group hover:border-accent transition-colors">
+                    <div className="absolute top-0 right-0 w-20 h-20 bg-primary/10 transform rotate-45 translate-x-10 -translate-y-10 group-hover:bg-accent/10 transition-colors"></div>
+                    <Icon name="Award" className="mb-4 text-primary group-hover:text-accent transition-colors" size={36} />
+                    <div className="text-4xl font-black text-foreground">8</div>
+                    <div className="text-xs text-muted-foreground font-semibold tracking-wider">ЛЕТ ОПЫТА</div>
                   </div>
                 </div>
               </div>
@@ -178,26 +214,33 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="technologies" className="py-20 px-6 bg-card/30">
+      <section id="technologies" className="py-24 px-6 bg-card/50 relative">
+        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-64 bg-primary"></div>
         <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold mb-4">ТЕХНОЛОГИИ</h2>
-            <div className="w-24 h-1 bg-primary mx-auto mb-4"></div>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Используем передовые методы аддитивного производства для решения самых сложных задач
+          <div className="mb-20">
+            <div className="inline-flex items-center gap-3 mb-4">
+              <div className="w-12 h-0.5 bg-primary"></div>
+              <span className="text-sm text-primary font-bold tracking-widest">ЧТО МЫ УМЕЕМ</span>
+            </div>
+            <h2 className="text-6xl font-black mb-6 tracking-tight">ТЕХНОЛОГИИ</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed">
+              Используем передовые методы аддитивного производства для решения самых сложных промышленных задач
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {technologies.map((tech, index) => (
               <Card 
                 key={index}
-                className="group hover:border-primary transition-all duration-300 bg-card border-border cursor-pointer hover:scale-105"
+                className="group bg-card border-2 border-border hover:border-primary transition-all duration-300 cursor-pointer relative overflow-hidden"
               >
-                <CardContent className="p-6 text-center">
-                  <div className="mb-4 inline-block p-4 bg-primary/10 border border-primary/30 group-hover:bg-primary/20 transition-colors">
+                <div className="absolute top-0 right-0 text-8xl font-black text-primary/5 leading-none p-4">
+                  {String(index + 1).padStart(2, '0')}
+                </div>
+                <CardContent className="p-8 relative z-10">
+                  <div className="mb-6 inline-block p-4 bg-background border-2 border-primary/30 group-hover:border-primary group-hover:bg-primary/5 transition-all">
                     <Icon name={tech.icon as any} className="text-primary" size={40} />
                   </div>
-                  <h3 className="text-xl font-bold mb-3">{tech.title}</h3>
+                  <h3 className="text-xl font-black mb-4 tracking-tight">{tech.title}</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">
                     {tech.description}
                   </p>
@@ -208,26 +251,30 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="services" className="py-20 px-6">
+      <section id="services" className="py-24 px-6 relative">
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1 h-64 bg-accent"></div>
         <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold mb-4">УСЛУГИ</h2>
-            <div className="w-24 h-1 bg-primary mx-auto mb-4"></div>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Полный цикл работ от идеи до готового изделия
+          <div className="mb-20">
+            <div className="inline-flex items-center gap-3 mb-4">
+              <div className="w-12 h-0.5 bg-accent"></div>
+              <span className="text-sm text-accent font-bold tracking-widest">НАШИ УСЛУГИ</span>
+            </div>
+            <h2 className="text-6xl font-black mb-6 tracking-tight">РЕШЕНИЯ</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed">
+              Полный цикл работ от концепции до готового изделия
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {services.map((service, index) => (
               <Card 
                 key={index}
-                className="group hover:border-accent transition-all duration-300 bg-card border-border cursor-pointer hover:scale-105"
+                className="group bg-background border-l-4 border-accent hover:border-primary hover:bg-card transition-all duration-300 cursor-pointer"
               >
-                <CardContent className="p-6">
-                  <div className="mb-4">
-                    <Icon name={service.icon as any} className="text-accent" size={40} />
+                <CardContent className="p-8">
+                  <div className="mb-6">
+                    <Icon name={service.icon as any} className="text-accent group-hover:text-primary transition-colors" size={44} />
                   </div>
-                  <h3 className="text-xl font-bold mb-3">{service.title}</h3>
+                  <h3 className="text-lg font-black mb-4 tracking-tight">{service.title}</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">
                     {service.description}
                   </p>
@@ -238,30 +285,50 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="projects" className="py-20 px-6 bg-card/30">
+      <section id="projects" className="py-24 px-6 bg-card/50 relative">
+        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-64 bg-primary"></div>
         <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold mb-4">ПРОЕКТЫ</h2>
-            <div className="w-24 h-1 bg-primary mx-auto mb-4"></div>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Реализованные решения для различных отраслей
+          <div className="mb-20">
+            <div className="inline-flex items-center gap-3 mb-4">
+              <div className="w-12 h-0.5 bg-primary"></div>
+              <span className="text-sm text-primary font-bold tracking-widest">PORTFOLIO</span>
+            </div>
+            <h2 className="text-6xl font-black mb-6 tracking-tight">ПРОЕКТЫ</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed">
+              Реализованные решения для различных промышленных отраслей
             </p>
           </div>
           <div className="grid md:grid-cols-2 gap-8">
             {projects.map((project, index) => (
               <Card 
                 key={index}
-                className="group overflow-hidden border-border hover:border-primary transition-all duration-300 cursor-pointer"
+                className="group overflow-hidden bg-card border-2 border-border hover:border-primary transition-all duration-300 cursor-pointer"
               >
-                <div className="h-64 bg-gradient-to-br from-muted to-background flex items-center justify-center relative overflow-hidden">
-                  <div className="absolute inset-0 bg-primary/5 group-hover:bg-primary/10 transition-colors"></div>
-                  <div className="relative text-center">
-                    <Icon name="Box" className="mx-auto mb-4 text-primary" size={64} />
-                    <div className="text-2xl font-bold">{project.title}</div>
+                <div className="h-72 bg-gradient-to-br from-muted via-background to-card flex items-center justify-center relative overflow-hidden">
+                  <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors"></div>
+                  <div className="absolute top-0 left-0 w-full h-full opacity-10"
+                    style={{
+                      backgroundImage: `repeating-linear-gradient(
+                        45deg,
+                        transparent,
+                        transparent 10px,
+                        rgba(250, 250, 250, 0.1) 10px,
+                        rgba(250, 250, 250, 0.1) 20px
+                      )`
+                    }}
+                  ></div>
+                  <div className="relative text-center z-10">
+                    <div className="mb-6 inline-block p-6 bg-background/80 border-2 border-primary/50">
+                      <Icon name="Box" className="text-primary" size={72} />
+                    </div>
+                    <div className="text-3xl font-black tracking-tight">{project.title}</div>
                   </div>
                 </div>
-                <CardContent className="p-6">
-                  <div className="text-sm text-accent font-medium mb-2">{project.category}</div>
+                <CardContent className="p-8 bg-background">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-8 h-0.5 bg-accent"></div>
+                    <div className="text-xs text-accent font-bold tracking-widest">{project.category}</div>
+                  </div>
                   <p className="text-muted-foreground leading-relaxed">
                     {project.description}
                   </p>
@@ -272,14 +339,18 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="about" className="py-20 px-6">
+      <section id="about" className="py-24 px-6 relative">
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1 h-64 bg-accent"></div>
         <div className="container mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <h2 className="text-5xl font-bold mb-6">О КОМПАНИИ</h2>
-              <div className="w-24 h-1 bg-primary mb-8"></div>
-              <div className="space-y-4 text-muted-foreground leading-relaxed">
-                <p className="text-lg">
+              <div className="inline-flex items-center gap-3 mb-4">
+                <div className="w-12 h-0.5 bg-accent"></div>
+                <span className="text-sm text-accent font-bold tracking-widest">КТО МЫ</span>
+              </div>
+              <h2 className="text-6xl font-black mb-8 tracking-tight">О КОМПАНИИ</h2>
+              <div className="space-y-6 text-muted-foreground leading-relaxed">
+                <p className="text-lg border-l-4 border-primary pl-6">
                   Мы специализируемся на аддитивных технологиях производства с 2016 года. 
                   Наша миссия — делать промышленное 3D-прототипирование доступным и эффективным.
                 </p>
@@ -287,51 +358,51 @@ const Index = () => {
                   Команда опытных инженеров и технологов работает над самыми сложными проектами 
                   в авиакосмической, автомобильной и медицинской отраслях.
                 </p>
-                <p className="text-lg">
+                <p className="text-lg border-l-4 border-accent pl-6">
                   Современное оборудование и собственные разработки позволяют нам гарантировать 
                   высокое качество и точность изделий.
                 </p>
               </div>
-              <div className="grid grid-cols-2 gap-6 mt-8">
-                <div className="p-6 bg-card border border-border">
-                  <Icon name="Shield" className="text-primary mb-3" size={32} />
-                  <div className="font-bold mb-1">Сертификаты</div>
+              <div className="grid grid-cols-2 gap-6 mt-10">
+                <div className="p-6 bg-card border-l-4 border-primary">
+                  <Icon name="Shield" className="text-primary mb-4" size={36} />
+                  <div className="font-black text-lg mb-2">СЕРТИФИКАТЫ</div>
                   <div className="text-sm text-muted-foreground">ISO 9001, ISO 14001</div>
                 </div>
-                <div className="p-6 bg-card border border-border">
-                  <Icon name="Zap" className="text-accent mb-3" size={32} />
-                  <div className="font-bold mb-1">Технологии</div>
+                <div className="p-6 bg-card border-l-4 border-accent">
+                  <Icon name="Zap" className="text-accent mb-4" size={36} />
+                  <div className="font-black text-lg mb-2">ТЕХНОЛОГИИ</div>
                   <div className="text-sm text-muted-foreground">15+ методов печати</div>
                 </div>
               </div>
             </div>
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-l from-primary/20 to-accent/20 blur-3xl"></div>
-              <div className="relative bg-card border border-border p-8">
+              <div className="absolute inset-0 bg-gradient-to-l from-primary/20 via-transparent to-accent/10 blur-3xl"></div>
+              <div className="relative bg-card border-2 border-border p-10">
                 <div className="space-y-6">
-                  <div className="flex items-start gap-4 p-4 bg-background/50 border-l-4 border-primary">
-                    <Icon name="Target" className="text-primary mt-1" size={24} />
+                  <div className="flex items-start gap-6 p-6 bg-background border-l-4 border-primary">
+                    <Icon name="Target" className="text-primary mt-1 flex-shrink-0" size={32} />
                     <div>
-                      <div className="font-bold mb-1">Точность</div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="font-black text-lg mb-2">ТОЧНОСТЬ</div>
+                      <div className="text-sm text-muted-foreground leading-relaxed">
                         Погрешность не более 0.1 мм на большинстве технологий
                       </div>
                     </div>
                   </div>
-                  <div className="flex items-start gap-4 p-4 bg-background/50 border-l-4 border-accent">
-                    <Icon name="Clock" className="text-accent mt-1" size={24} />
+                  <div className="flex items-start gap-6 p-6 bg-background border-l-4 border-accent">
+                    <Icon name="Clock" className="text-accent mt-1 flex-shrink-0" size={32} />
                     <div>
-                      <div className="font-bold mb-1">Скорость</div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="font-black text-lg mb-2">СКОРОСТЬ</div>
+                      <div className="text-sm text-muted-foreground leading-relaxed">
                         Быстрое прототипирование от 24 часов
                       </div>
                     </div>
                   </div>
-                  <div className="flex items-start gap-4 p-4 bg-background/50 border-l-4 border-primary">
-                    <Icon name="Sparkles" className="text-primary mt-1" size={24} />
+                  <div className="flex items-start gap-6 p-6 bg-background border-l-4 border-primary">
+                    <Icon name="Sparkles" className="text-primary mt-1 flex-shrink-0" size={32} />
                     <div>
-                      <div className="font-bold mb-1">Качество</div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="font-black text-lg mb-2">КАЧЕСТВО</div>
+                      <div className="text-sm text-muted-foreground leading-relaxed">
                         Постобработка и контроль качества каждого изделия
                       </div>
                     </div>
@@ -343,69 +414,73 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="contacts" className="py-20 px-6 bg-card/30">
-        <div className="container mx-auto max-w-4xl">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold mb-4">КОНТАКТЫ</h2>
-            <div className="w-24 h-1 bg-primary mx-auto mb-4"></div>
-            <p className="text-xl text-muted-foreground">
+      <section id="contacts" className="py-24 px-6 bg-card/50 relative">
+        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-64 bg-primary"></div>
+        <div className="container mx-auto max-w-5xl">
+          <div className="mb-20">
+            <div className="inline-flex items-center gap-3 mb-4">
+              <div className="w-12 h-0.5 bg-primary"></div>
+              <span className="text-sm text-primary font-bold tracking-widest">СВЯЗАТЬСЯ</span>
+            </div>
+            <h2 className="text-6xl font-black mb-6 tracking-tight">КОНТАКТЫ</h2>
+            <p className="text-xl text-muted-foreground leading-relaxed">
               Свяжитесь с нами для обсуждения вашего проекта
             </p>
           </div>
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
-            <Card className="text-center border-border hover:border-primary transition-colors">
-              <CardContent className="p-6">
-                <Icon name="Phone" className="mx-auto mb-4 text-primary" size={32} />
-                <div className="font-bold mb-2">Телефон</div>
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            <Card className="bg-background border-l-4 border-primary hover:border-accent transition-colors">
+              <CardContent className="p-8 text-center">
+                <Icon name="Phone" className="mx-auto mb-4 text-primary" size={36} />
+                <div className="font-black text-sm mb-3 tracking-wider">ТЕЛЕФОН</div>
                 <div className="text-muted-foreground">+7 (495) 123-45-67</div>
               </CardContent>
             </Card>
-            <Card className="text-center border-border hover:border-primary transition-colors">
-              <CardContent className="p-6">
-                <Icon name="Mail" className="mx-auto mb-4 text-primary" size={32} />
-                <div className="font-bold mb-2">Email</div>
+            <Card className="bg-background border-l-4 border-primary hover:border-accent transition-colors">
+              <CardContent className="p-8 text-center">
+                <Icon name="Mail" className="mx-auto mb-4 text-primary" size={36} />
+                <div className="font-black text-sm mb-3 tracking-wider">EMAIL</div>
                 <div className="text-muted-foreground">info@additive-tech.ru</div>
               </CardContent>
             </Card>
-            <Card className="text-center border-border hover:border-primary transition-colors">
-              <CardContent className="p-6">
-                <Icon name="MapPin" className="mx-auto mb-4 text-primary" size={32} />
-                <div className="font-bold mb-2">Адрес</div>
+            <Card className="bg-background border-l-4 border-primary hover:border-accent transition-colors">
+              <CardContent className="p-8 text-center">
+                <Icon name="MapPin" className="mx-auto mb-4 text-primary" size={36} />
+                <div className="font-black text-sm mb-3 tracking-wider">АДРЕС</div>
                 <div className="text-muted-foreground">Москва, ул. Промышленная, 42</div>
               </CardContent>
             </Card>
           </div>
-          <Card className="border-border">
-            <CardContent className="p-8">
+          <Card className="bg-card border-2 border-border">
+            <CardContent className="p-10">
               <form className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium mb-2">Имя</label>
+                    <label className="block text-sm font-bold mb-3 tracking-wider">ИМЯ</label>
                     <input 
                       type="text" 
-                      className="w-full px-4 py-3 bg-background border border-border focus:border-primary focus:outline-none transition-colors"
+                      className="w-full px-4 py-4 bg-background border-2 border-border focus:border-primary focus:outline-none transition-colors font-medium"
                       placeholder="Ваше имя"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">Email</label>
+                    <label className="block text-sm font-bold mb-3 tracking-wider">EMAIL</label>
                     <input 
                       type="email" 
-                      className="w-full px-4 py-3 bg-background border border-border focus:border-primary focus:outline-none transition-colors"
+                      className="w-full px-4 py-4 bg-background border-2 border-border focus:border-primary focus:outline-none transition-colors font-medium"
                       placeholder="email@example.com"
                     />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Сообщение</label>
+                  <label className="block text-sm font-bold mb-3 tracking-wider">СООБЩЕНИЕ</label>
                   <textarea 
-                    rows={5}
-                    className="w-full px-4 py-3 bg-background border border-border focus:border-primary focus:outline-none transition-colors resize-none"
+                    rows={6}
+                    className="w-full px-4 py-4 bg-background border-2 border-border focus:border-primary focus:outline-none transition-colors resize-none font-medium"
                     placeholder="Расскажите о вашем проекте..."
                   ></textarea>
                 </div>
-                <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-6 text-lg">
-                  Отправить заявку
+                <Button className="w-full bg-primary hover:bg-primary/90 text-background font-black py-6 text-base tracking-wider">
+                  ОТПРАВИТЬ ЗАЯВКУ
                 </Button>
               </form>
             </CardContent>
@@ -413,10 +488,21 @@ const Index = () => {
         </div>
       </section>
 
-      <footer className="py-8 px-6 border-t border-border">
-        <div className="container mx-auto text-center text-muted-foreground">
-          <div className="text-xl font-bold mb-2 text-primary">ADDITIVE TECH</div>
-          <p className="text-sm">© 2024 Все права защищены</p>
+      <footer className="py-10 px-6 border-t-2 border-primary/40 bg-background relative">
+        <div className="absolute top-0 left-0 w-32 h-1 bg-primary"></div>
+        <div className="container mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-primary flex items-center justify-center">
+                <Icon name="Box" className="text-background" size={24} />
+              </div>
+              <div>
+                <div className="text-xl font-black tracking-tight">ADDITIVE TECH</div>
+                <div className="text-xs text-primary font-semibold tracking-widest">INDUSTRIAL 3D PRINTING</div>
+              </div>
+            </div>
+            <div className="text-sm text-muted-foreground">© 2024 ВСЕ ПРАВА ЗАЩИЩЕНЫ</div>
+          </div>
         </div>
       </footer>
     </div>
